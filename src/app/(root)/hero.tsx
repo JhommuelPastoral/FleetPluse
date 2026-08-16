@@ -128,7 +128,7 @@ export default function HeroSection() {
     >
       {/* Background */}
       <Image
-        src="/hero3.jpg"
+        src="/hero1.jpg"
         alt="Fleet truck"
         fill
         priority
