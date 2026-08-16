@@ -25,9 +25,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", ibmPlexSans.variable)}
+      className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, "font-sans", ibmPlexSans.variable, "scrollbar-none")}
     >
-      <body className="min-h-full flex flex-col font-mono">
+      <body className="min-h-full flex flex-col font-mono ">
         <QueryProvider>
           {children}
         </QueryProvider>
