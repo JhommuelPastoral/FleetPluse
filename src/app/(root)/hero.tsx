@@ -6,6 +6,7 @@ import { ArrowUpRight, Play, Activity } from "lucide-react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
+import { Marquee } from "react-kino";
 
 gsap.registerPlugin(SplitText);
 
@@ -210,45 +211,40 @@ export default function HeroSection() {
       {/* Bottom information bar */}
       <div
         ref={statsRef}
-        className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-black/20 backdrop-blur-md"
+        className="absolute bottom-0 left-0 right-0 z-10 border-t border-white/10 bg-black/20 text-white backdrop-blur-md cursor-default "
       >
-        <div className="flex flex-col justify-between gap-5 px-6 py-5 sm:flex-row sm:items-center sm:px-10 lg:px-20">
-          <div className="flex items-center gap-3">
-            <span className="flex h-8 w-8 items-center justify-center rounded-full border border-primary/40 bg-primary/10">
-              <Activity size={15} className="text-primary" />
+        <Marquee speed={60} pauseOnHover>
+          <div>
+            <span className="mx-8 font-mono tracking-widest text-white/50">
+              24 VEHICLES MONITORED
+            </span>
+            <span className="text-primary">●</span>
+
+            <span className="mx-8 font-monotracking-widest text-white/50">
+              REAL-TIME GPS TRACKING
             </span>
 
-            <div>
-              <p className="font-mono text-[10px] tracking-widest text-white/40">
-                SYSTEM STATUS
-              </p>
+            <span className="text-primary">●</span>
 
-              <p className="text-sm font-medium text-white">
-                All systems operational
-              </p>
-            </div>
+            <span className="mx-8 font-mono tracking-widest text-white/50">
+              LIVE FLEET VISIBILITY
+            </span>
+
+            <span className="text-primary">●</span>
+
+            <span className="mx-8 font-monotracking-widest text-white/50">
+              FUEL & MAINTENANCE MONITORING
+            </span>
+
+            <span className="text-primary">●</span>
+
+            <span className="mx-8 font-mono tracking-widest text-white/50">
+              24 / 7 OPERATIONS
+            </span>
+
+            <span className="text-primary">●</span>
           </div>
-
-          <div className="flex gap-8">
-            <div>
-              <p className="font-mono text-[10px] tracking-widest text-white/40">
-                VEHICLES
-              </p>
-              <p className="text-sm font-semibold text-white">
-                24 monitored
-              </p>
-            </div>
-
-            <div>
-              <p className="font-mono text-[10px] tracking-widest text-white/40">
-                VISIBILITY
-              </p>
-              <p className="text-sm font-semibold text-white">
-                24 / 7
-              </p>
-            </div>
-          </div>
-        </div>
+        </Marquee>
       </div>
     </section>
   );
