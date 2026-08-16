@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import Hero from "./hero";
 import Problem from "./problem";
-
+import Operation from "./operation";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -29,6 +29,7 @@ export default function Page() {
         <div id="smooth-content">
           <Hero />
           <Problem />
+          <Operation />
         </div>
       </div>
     </>
