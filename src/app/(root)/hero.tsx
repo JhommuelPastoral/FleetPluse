@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import { ArrowUpRight, Play, Activity } from "lucide-react";
+import { ArrowUpRight, Play, VectorSquare  } from "lucide-react";
 import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { SplitText } from "gsap/SplitText";
@@ -17,7 +17,7 @@ export default function HeroSection() {
   const textRef = useRef<HTMLParagraphElement>(null);
   const buttonsRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
-
+  const logoRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const ctx = gsap.context(() => {
       if (
@@ -26,7 +26,8 @@ export default function HeroSection() {
         !titleRef.current ||
         !textRef.current ||
         !buttonsRef.current ||
-        !statsRef.current
+        !statsRef.current ||
+        !logoRef.current
       ) {
         return;
       }
@@ -62,6 +63,15 @@ export default function HeroSection() {
         }
       );
 
+      // Logo reveal
+      gsap.from(
+        logoRef.current,
+        {
+          opacity: 0,
+          duration: 5,
+          ease: "power3.out",
+        }
+      );
       // Eyebrow
       tl.from(eyebrowSplit.chars, {
         x: -1000,
@@ -135,9 +145,13 @@ export default function HeroSection() {
         sizes="100vw"
         className="object-cover grayscale"
       />
-
+      {/* Logo */}
+      <div className="absolute top-0 left-0 z-20 flex items-center gap-2 px-6 py-10 sm:px-10 lg:px-20 text-white" ref={logoRef}>
+        <VectorSquare  size={30} className=" font-bold" />
+        <p className="text-2xl font-bold">Haulvia.</p>
+      </div>
       {/* Premium overlay */}
-      <div className="absolute inset-0 bg-black/35" />
+      {/* <div className="absolute inset-0 bg-black/35" /> */}
 
       {/* Stronger left-side contrast */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/45 to-black/10" />
@@ -156,19 +170,19 @@ export default function HeroSection() {
               ref={eyebrowRef}
               className="font-mono text-sm font-semibold tracking-[0.2em] text-primary sm:text-base"
             >
-              REAL-TIME FLEET OPERATIONS
+              REAL-TIME TRUCKING OPERATIONS
             </p>
           </div>
 
           {/* Heading */}
           <h1
             ref={titleRef}
-            className="max-w-5xl text-5xl font-semibold leading-[0.95] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem]"
+            className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-[-0.045em] text-white sm:text-6xl md:text-7xl lg:text-[6.5rem]"
           >
             Know where every truck is.
             <br />
-            Know what&apos;s{" "}
-            <span className="text-primary">costing you.</span>
+            Know {" "}
+            <span className="text-primary"> what&apos;s{" "} costing you.</span>
           </h1>
 
           {/* Description */}
@@ -176,7 +190,7 @@ export default function HeroSection() {
             ref={textRef}
             className="mt-8 max-w-xl text-base leading-7 text-white/70 sm:text-lg"
           >
-            FleetPulse gives fleet managers one live command center for
+            Haulvia gives fleet managers one live command center for
             vehicles, drivers, fuel, maintenance, and deliveries.
           </p>
 
