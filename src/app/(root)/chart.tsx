@@ -15,21 +15,21 @@ import {
 } from "@/components/ui/chart";
 
 const chartData = [
-  { day: "1", cost: 8200 },
-  { day: "3", cost: 9100 },
-  { day: "5", cost: 8700 },
-  { day: "7", cost: 10400 },
-  { day: "9", cost: 9600 },
-  { day: "11", cost: 11200 },
-  { day: "13", cost: 10800 },
-  { day: "15", cost: 12400 },
-  { day: "17", cost: 11800 },
-  { day: "19", cost: 13200 },
-  { day: "21", cost: 12700 },
-  { day: "23", cost: 14500 },
-  { day: "25", cost: 15800 },
-  { day: "27", cost: 15100 },
-  { day: "30", cost: 16200 },
+  { day: "1", cost: 12500 },
+  { day: "3", cost: 18400 },
+  { day: "5", cost: 9200 },
+  { day: "7", cost: 22100 },
+  { day: "9", cost: 14600 },
+  { day: "11", cost: 19800 },
+  { day: "13", cost: 11700 },
+  { day: "15", cost: 25300 },
+  { day: "17", cost: 13900 },
+  { day: "19", cost: 21700 },
+  { day: "21", cost: 10800 },
+  { day: "23", cost: 26900 },
+  { day: "25", cost: 16100 },
+  { day: "27", cost: 22420 },
+  { day: "30", cost: 19100 },
 ];
 
 const chartConfig = {
@@ -128,7 +128,7 @@ export default function FuelChart() {
               content={
                 <ChartTooltipContent
                   hideLabel
-                  indicator="dot"
+                  indicator="line"
                   formatter={(value) => (
                     <span className="font-semibold text-primary">
                       ₱{Number(value).toLocaleString()}

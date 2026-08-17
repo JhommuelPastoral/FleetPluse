@@ -90,11 +90,11 @@ export default function FuelOperations() {
       <div className="grid items-center gap-14 lg:grid-cols-[0.7fr_1.3fr] lg:gap-20">
         {/* LEFT */}
         <div ref={contentRef}>
-          <p className="mb-6 text-sm font-semibold uppercase tracking-[0.3em] text-primary">
-            Fleet Efficiency
+          <p className="mb-6 text-sm font-semibold uppercase tracking-[0.3em] text-primary ">
+            Truck Efficiency
           </p>
 
-          <h2 className="max-w-lg text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl">
+          <h2 className="max-w-lg text-4xl font-bold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl">
             Every kilometer
             <br />
             has a cost.

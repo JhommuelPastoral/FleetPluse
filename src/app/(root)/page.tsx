@@ -5,6 +5,9 @@ import Hero from "./hero";
 import Problem from "./problem";
 import Operation from "./operation";
 import FuelOperations from "./fuelOperation";
+import Maintenance from "./maintenance";
+import TruckOverview from "./truckOverview";
+import FleetFooter from "./fleetFooter";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
@@ -32,6 +35,9 @@ export default function Page() {
           <Problem />
           <Operation />
           <FuelOperations />
+          <Maintenance />
+          <TruckOverview />
+          <FleetFooter />
         </div>
       </div>
     </>
