@@ -11,8 +11,20 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {createClient} from "@/lib/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
+import type{ Provider } from "@supabase/supabase-js";
 export default function Auth() {
+  const supabase = createClient();
+  const handleSigIn = async (provider:Provider) => {
+    const { data, error } = await supabase.auth.signInWithOAuth({
+      provider,
+      options: {
+        redirectTo: `${process.env.NEXT_PUBLIC_URL}/auth/callback`,
+      },
+    });
+  }
+
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-white px-4">
       <div className="w-full max-w-[416px] text-center">
@@ -35,12 +47,14 @@ export default function Auth() {
           <Button
             variant="outline"
             className="flex cursor-pointer items-center gap-2"
+            onClick={() => handleSigIn("google")}
           >
             <Image
               src="https://thesvg.org/icons/google/default.svg"
               alt="Google"
               width={24}
               height={24}
+              className="w-6 h-6"
             />
             Sign in with Google
           </Button>
@@ -48,12 +62,14 @@ export default function Auth() {
           <Button
             variant="outline"
             className="mt-2 flex cursor-pointer items-center gap-2"
+            onClick={() => handleSigIn("github")}
           >
             <Image
               src="https://thesvg.org/icons/github/default.svg"
               alt="GitHub"
               width={24}
               height={24}
+              className="w-6 h-6"
             />
             Sign in with GitHub
           </Button>
