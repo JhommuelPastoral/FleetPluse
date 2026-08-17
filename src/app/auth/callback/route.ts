@@ -16,6 +16,16 @@ export async function GET(request: Request) {
   if (code) {
     const supabase = await createClient()
     const { error } = await supabase.auth.exchangeCodeForSession(code)
+    const {data: { user }} = await supabase.auth.getUser();
+    if(!user || !user.email || !user.id || !user.user_metadata.full_name || !user.user_metadata.picture) {
+      return NextResponse.redirect(`${origin}/auth/auth-code-error`)
+    }
+    await supabase.from('users').upsert({ 
+      id: user.id, 
+      email: user.email,
+      full_name: user.user_metadata.full_name,
+      img_url: user.user_metadata.picture || user.user_metadata.avatar_url 
+    });
     if (!error) {
       const forwardedHost = request.headers.get('x-forwarded-host') // original origin before load balancer
       const isLocalEnv = process.env.NODE_ENV === 'development'
