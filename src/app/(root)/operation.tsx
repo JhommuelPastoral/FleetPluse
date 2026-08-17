@@ -6,13 +6,35 @@ import { useEffect, useRef } from "react";
 import Map from "./map";
 
 gsap.registerPlugin(ScrollTrigger);
-
+const fleetStats = [
+  {
+    value: 18,
+    label: "On the road",
+    className: "text-lime-400",
+  },
+  {
+    value: 3,
+    label: "Idle",
+    className: "text-slate-200",
+  },
+  {
+    value: 2,
+    label: "In maintenance",
+    className: "text-yellow-400",
+  },
+  {
+    value: 1,
+    label: "Delayed",
+    className: "text-red-400",
+  },
+];
 export default function Operation() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const eyebrowRef = useRef<HTMLDivElement | null>(null);
   const headingRef = useRef<HTMLDivElement | null>(null);
   const descriptionRef = useRef<HTMLParagraphElement | null>(null);
   const mapWrapperRef = useRef<HTMLDivElement | null>(null);
+  const statsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -52,6 +74,16 @@ export default function Operation() {
           "-=0.45"
         )
         .from(
+          statsRef.current?.children ?? [],
+          {
+            y: 20,
+            opacity: 0,
+            duration: 0.6,
+            stagger: 0.08,
+          },
+          "-=0.35"
+        )
+        .from(
           mapWrapperRef.current,
           {
             y: 40,
@@ -77,7 +109,7 @@ export default function Operation() {
         ref={eyebrowRef}
         className="mb-6 text-sm font-semibold uppercase tracking-[0.3em] text-primary"
       >
-        Live Operations
+        Live Operations.
       </p>
 
       <div className="grid w-full gap-14 lg:grid-cols-2 lg:gap-20">
@@ -107,12 +139,34 @@ export default function Operation() {
             ref={descriptionRef}
             className="mt-8 max-w-xl text-base leading-7 text-slate-400 sm:text-lg"
           >
-            Monitor your entire fleet in real time. Know where every vehicle
+            Monitor your entire truck in real time. Know where every vehicle
             is, what it&apos;s doing, and what needs attention next.
             <span className="mt-2 block text-slate-200">
               One view for the operation behind every delivery.
             </span>
           </p>
+          {/* FLEET STATS */}
+          <div
+            ref={statsRef}
+            className="mt-8 grid grid-cols-2 gap-2 sm:grid-cols-4"
+          >
+            {fleetStats.map((stat) => (
+              <div
+                key={stat.label}
+                className="rounded-xl border border-white/[0.06] bg-white/[0.035] px-3 py-3"
+              >
+                <div
+                  className={`text-2xl font-semibold tracking-tight ${stat.className}`}
+                >
+                  {stat.value}
+                </div>
+
+                <div className="mt-1 text-[11px] font-medium text-slate-500">
+                  {stat.label}
+                </div>
+              </div>
+            ))}
+          </div>
 
           <div className="mt-10 flex items-center gap-4 border-t border-white/10 pt-6">
             <div className="flex items-center gap-2">
