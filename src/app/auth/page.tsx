@@ -13,10 +13,19 @@ import {
 } from "@/components/ui/dialog";
 import {createClient} from "@/lib/supabase/client";
 import { Checkbox } from "@/components/ui/checkbox";
-import type{ Provider } from "@supabase/supabase-js";
+import type { Provider } from "@supabase/supabase-js";
+import {useState} from "react";
+
+
 export default function Auth() {
   const supabase = createClient();
+  const [isChecked, setIsChecked] = useState<string | boolean>("");
+  const [isError, setIsError] = useState(false);
   const handleSigIn = async (provider:Provider) => {
+    if(typeof isChecked === "string" || !isChecked){
+      setIsError(true);
+      return;
+    } 
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider,
       options: {
@@ -76,9 +85,12 @@ export default function Auth() {
         </div>
 
         {/* Terms */}
-        <div className="flex items-start mt-4">
-          <Checkbox id="terms" className="border border-black" />
-          <p className="ml-2 text-xs  text-gray-500">
+        <div className="flex items-center mt-4 gap-2">
+          <Checkbox id="terms" 
+            className={`border ${isError ? "border-destructive" : "border-black"}`}  
+            onCheckedChange={(checked) => setIsChecked(checked)}
+          />
+          <p className="ml-2 text-xs  text-gray-500 text-justify">
             By clicking continue, you agree to our{" "}
             <Dialog>
               <DialogTrigger asChild>
@@ -316,6 +328,11 @@ export default function Auth() {
             .
           </p>
         </div>
+        {(isError && !isChecked ) && (
+          <p className="text-xs text-destructive mt-2 text-start">
+            You must agree to the Terms and Conditions to continue.
+          </p>
+        )}
       </div>
     </div>
   );
