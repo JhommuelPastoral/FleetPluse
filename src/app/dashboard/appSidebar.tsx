@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   Bell,
   CarFront,
@@ -14,7 +14,7 @@ import {
   Users,
   Wrench,
   VectorSquare
-} from "lucide-react"
+} from "lucide-react";
 
 import {
   Sidebar,
@@ -28,7 +28,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+
+import { usePathname } from 'next/navigation'
 
 const data = {
   user: {
@@ -94,11 +96,10 @@ const data = {
   ],
 }
 
-export default function AppSidebar({
-  ...props
-}: React.ComponentProps<typeof Sidebar>) {
+export default function AppSidebar({...props}: React.ComponentProps<typeof Sidebar>) {
+  const pathname = usePathname();
   return (
-    <Sidebar collapsible="icon" {...props}>
+    <Sidebar collapsible="icon" {...props} >
       {/* Header */}
       <SidebarHeader >
         <div className="flex items-center gap-2 px-2">
@@ -120,12 +121,14 @@ export default function AppSidebar({
           <SidebarGroupLabel>Operations</SidebarGroupLabel>
 
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-2">
               {data.navMain.map((item) => (
-                <SidebarMenuItem key={item.title}>
+                <SidebarMenuItem key={item.title} 
+                >
                   <SidebarMenuButton
                     asChild
                     tooltip={item.title}
+                    className={pathname === item.url ? "bg-primary text-white hover:bg-primary hover:text-white" : "hover:bg-blue-100 hover:text-black"}
                   >
                     <a href={item.url}>
                       <item.icon />
@@ -136,18 +139,20 @@ export default function AppSidebar({
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
+
         </SidebarGroup>
 
         <SidebarGroup>
           <SidebarGroupLabel>Management</SidebarGroupLabel>
 
           <SidebarGroupContent>
-            <SidebarMenu>
+            <SidebarMenu className="space-y-2">
               {data.management.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton
                     asChild
                     tooltip={item.title}
+                    className={pathname === item.url ? "bg-primary text-white hover:bg-primary hover:text-white" : "hover:bg-blue-100 hover:text-black"}
                   >
                     <a href={item.url}>
                       <item.icon />
@@ -159,6 +164,7 @@ export default function AppSidebar({
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
       </SidebarContent>
 
       {/* User */}

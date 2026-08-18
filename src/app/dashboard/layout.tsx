@@ -8,7 +8,7 @@ import {
 
 export default function Layout({children}: {children: React.ReactNode}) {
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-12">
@@ -20,7 +20,7 @@ export default function Layout({children}: {children: React.ReactNode}) {
             />
           </div>
         </header>
-        <main>
+        <main className="px-4 py-2">
           {children}
         </main>
       </SidebarInset>
