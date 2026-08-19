@@ -35,6 +35,10 @@ export default function Map() {
       new mapboxgl.NavigationControl(),
       "bottom-right"
     );
+    mapRef.current.addControl(
+      new mapboxgl.FullscreenControl(),
+      "top-right"
+    );
 
     return () => {
       mapRef.current?.remove();

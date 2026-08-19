@@ -38,7 +38,6 @@ const data = {
     email: "admin@haulvia.com",
     avatar: "/avatars/default.jpg",
   },
-
   navMain: [
     {
       title: "Overview",

@@ -4,6 +4,16 @@
 
 @custom-variant dark (&:is(.dark *));
 
+
+.mapboxgl-ctrl .mapboxgl-ctrl-fullscreen .mapboxgl-ctrl-icon{
+  background-image: url("/icon/maximize.svg") !important;
+}
+
+.mapboxgl-ctrl .mapboxgl-ctrl-shrink .mapboxgl-ctrl-icon{
+  background-image: url("/icon/minimize.svg") !important;
+}
+
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
