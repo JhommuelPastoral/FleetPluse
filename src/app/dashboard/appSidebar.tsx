@@ -103,7 +103,7 @@ export default function AppSidebar({...props}: React.ComponentProps<typeof Sideb
       <SidebarHeader >
         <div className="flex items-center gap-2 px-2">
           <VectorSquare size={24} />
-          <div className="flex flex-col  group-data-[state=collapsed]:hidden">
+          <div className="flex flex-col group-data-[state=collapsed]:hidden">
             <span className="truncate font-bold text-base">
               Haulvia
             </span>
